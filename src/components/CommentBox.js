@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import { useStore } from 'hooks'
+import { saveComment } from 'actions'
 
 const CommentBox = () => {
   const [comment, setComment] = useState('')
+  const [, dispatch] = useStore()
 
   const handleChange = event => {
     setComment(event.target.value)
@@ -9,6 +12,7 @@ const CommentBox = () => {
 
   const handleSubmit = event => {
     event.preventDefault()
+    dispatch(saveComment(comment))
     setComment('')
   }
 
