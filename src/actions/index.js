@@ -1,4 +1,5 @@
 import { SAVE_COMMENT, LOAD_COMMENTS } from 'actions/types'
+import jsonplaceholderAPI from 'apis/jsonplaceholderAPI'
 
 const saveComment = comment => {
   return {
@@ -7,11 +8,13 @@ const saveComment = comment => {
   }
 }
 
-const loadComments = comments => {
-  return {
+const loadComments = async dispatch => {
+  const fetchedComments = await jsonplaceholderAPI.get('/comments')
+
+  dispatch({
     type: LOAD_COMMENTS,
-    payload: comments
-  }
+    payload: fetchedComments
+  })
 }
 
 export { saveComment, loadComments }
