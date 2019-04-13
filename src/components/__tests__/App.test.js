@@ -1,18 +1,20 @@
 import React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
+import { shallow } from 'enzyme'
 
 import App from '../App'
+import CommentBox from '../CommentBox'
+import CommentList from '../CommentList'
 
 // We could have named this file just App.js
 
 it('shows a comment box', () => {
-  const div = document.createElement('div')
+  const wrapper = shallow(<App />)
 
-  render(<App />, div)
+  expect(wrapper.find(CommentBox).length).toEqual(1)
+})
 
-  // console.log('div : ', div.innerHTML)
+it('shows a comment list', () => {
+  const wrapper = shallow(<App />)
 
-  // expect(div.innerHTML).toContain('Comment Box')
-
-  unmountComponentAtNode(div)
+  expect(wrapper.find(CommentList)).toHaveLength(1)
 })
