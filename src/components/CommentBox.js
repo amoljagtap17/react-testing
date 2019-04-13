@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useStore } from 'hooks'
-import { saveComment } from 'actions'
+import { saveComment, loadComments } from 'actions'
+import jsonplaceholderAPI from 'apis/jsonplaceholderAPI'
 
 const CommentBox = () => {
   const [comment, setComment] = useState('')
@@ -16,14 +17,22 @@ const CommentBox = () => {
     setComment('')
   }
 
+  const fetchComments = async () => {
+    const fetchedComments = await jsonplaceholderAPI.get('/comments')
+    dispatch(loadComments(fetchedComments))
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
-      <h4>Add a Comment</h4>
-      <textarea value={comment} onChange={handleChange} />
-      <div>
-        <button>Submit Comment</button>
-      </div>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h4>Add a Comment</h4>
+        <textarea value={comment} onChange={handleChange} />
+        <div>
+          <button>Submit Comment</button>
+        </div>
+      </form>
+      <button onClick={fetchComments}>Fetch Comments</button>
+    </div>
   )
 }
 

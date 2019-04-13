@@ -1,4 +1,4 @@
-import { SAVE_COMMENT } from 'actions/types'
+import { SAVE_COMMENT, LOAD_COMMENTS } from 'actions/types'
 
 const saveComment = comment => {
   return {
@@ -7,4 +7,11 @@ const saveComment = comment => {
   }
 }
 
-export { saveComment }
+const loadComments = comments => {
+  return {
+    type: LOAD_COMMENTS,
+    payload: comments
+  }
+}
+
+export { saveComment, loadComments }
