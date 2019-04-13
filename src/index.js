@@ -1,14 +1,12 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import Store from 'store/Store'
-import rootReducer from 'reducers'
-
+import Root from 'Root'
 import App from 'components/App'
 
 render(
-  <Store rootReducer={rootReducer}>
+  <Root>
     <App />
-  </Store>,
+  </Root>,
   document.querySelector('#root')
 )
