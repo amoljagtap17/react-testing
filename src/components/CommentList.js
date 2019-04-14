@@ -14,11 +14,11 @@ const CommentList = () => {
       </li>
     ))
 
-  return (
+  return comments.length ? (
     <div className="border-solid border-teal-darkest border-2 rounded-t-lg mt-4 shadow-lg">
       <ul className="list-reset">{renderComments()}</ul>
     </div>
-  )
+  ) : null
 }
 
 export default CommentList
