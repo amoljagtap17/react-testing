@@ -3,7 +3,7 @@ import CommentBox from 'components/CommentBox'
 import CommentList from 'components/CommentList'
 
 const App = () => (
-  <div>
+  <div className="container mx-auto">
     <CommentBox />
     <CommentList />
   </div>
