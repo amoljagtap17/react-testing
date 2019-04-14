@@ -29,7 +29,9 @@ const CommentBox = () => {
           <button>Submit Comment</button>
         </div>
       </form>
-      <button onClick={fetchComments}>Fetch Comments</button>
+      <button className="fetch-comments" onClick={fetchComments}>
+        Fetch Comments
+      </button>
     </div>
   )
 }
