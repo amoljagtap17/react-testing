@@ -29,7 +29,7 @@ it('can fetch a list of comments and display them', done => {
   wrapper.find('.fetch-comments').simulate('click')
 
   // JEST does not handle below delay. So we use 'done'
-  setTimeout(() => {
+  /* setTimeout(() => {
     wrapper.update()
 
     // Expect to find a list of comments
@@ -38,5 +38,15 @@ it('can fetch a list of comments and display them', done => {
     done()
 
     wrapper.unmount()
-  }, 1000)
+  }, 1000) */
+
+  moxios.wait(() => {
+    wrapper.update()
+
+    expect(wrapper.find('li').length).toEqual(2)
+
+    done()
+
+    wrapper.unmount()
+  })
 })

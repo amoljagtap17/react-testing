@@ -17,6 +17,10 @@ beforeEach(() => {
   )
 })
 
+afterEach(() => {
+  wrapper.unmount()
+})
+
 it('creates one LI per comment', () => {
   expect(wrapper.find('li').length).toEqual(2)
 })
