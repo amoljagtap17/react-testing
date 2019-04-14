@@ -17,7 +17,7 @@ afterEach(() => {
   moxios.uninstall()
 })
 
-it('can fetch a list of comments and display them', () => {
+it('can fetch a list of comments and display them', done => {
   // Render the entire App
   const wrapper = mount(
     <Root>
@@ -28,6 +28,15 @@ it('can fetch a list of comments and display them', () => {
   // Find the 'Fetch Comments' button and click it
   wrapper.find('.fetch-comments').simulate('click')
 
-  // Expect to find a list of comments
-  expect(wrapper.find('li').length).toEqual(2)
+  // JEST does not handle below delay. So we use 'done'
+  setTimeout(() => {
+    wrapper.update()
+
+    // Expect to find a list of comments
+    expect(wrapper.find('li').length).toEqual(2)
+
+    done()
+
+    wrapper.unmount()
+  }, 1000)
 })
